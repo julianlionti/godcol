@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqycr6stflnqq"]
+
+[ext_resource type="Script" path="res://scripts/tile.gd" id="1_sfsa3"]
+[ext_resource type="TileSet" uid="uid://bysbebwtnkeme" path="res://assets/columns.tres" id="2_j40pk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2dp4"]
+size = Vector2(32, 96)
+
+[node name="Tile" type="CharacterBody2D"]
+script = ExtResource("1_sfsa3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 48)
+shape = SubResource("RectangleShape2D_h2dp4")
+one_way_collision = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 4, 0, 0, 0, 0, 0)
+tile_set = ExtResource("2_j40pk")
+
+[node name="TileTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="TileTimer" to="." method="_on_tile_timer_timeout"]
